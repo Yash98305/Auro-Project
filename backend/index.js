@@ -35,7 +35,7 @@ app.get("/",(req,res)=>{
 })
 const auth = require("./Routes/auth.js")
 app.use("/api/v1/auth",auth)
-// const item = require("./Routes/item.js")
-// app.use("/api/v1/item",item)
+const item = require("./Routes/item.js")
+app.use("/api/v1/item",item)
 
 module.exports =app
