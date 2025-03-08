@@ -19,6 +19,7 @@
     "express-formidable": "^1.2.0",
     "formidable": "^3.5.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.4.4"
+    "mongoose": "^8.4.4",
+    "socket.io": "^4.8.1"
   }
 }

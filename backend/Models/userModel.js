@@ -11,10 +11,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  phone : {
-    type: Number,
-    required: true,
-  },
   password: {
     type: String,
     required: true,
@@ -22,7 +18,11 @@ const userSchema = new mongoose.Schema({
   photo :{
     data: Buffer,
     contentType: String,
-  }
+  },
+  reputationScore: { 
+    type: Number, 
+    default: 0
+   },
 });
 userSchema.pre("save", async function (next){
     if (!this.isModified("password")) {

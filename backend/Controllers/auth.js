@@ -5,8 +5,8 @@ const sendToken = require("../JwtToken/jwtToken.js");
 const fs = require("fs");
 
 exports.register = catchAsyncError(async (req, res, next) => {
-  const { name, email, password,phone } = req.body;
-  if (!name || !email || !password || !phone) {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
     return next(new ErrorHandler("Please Enter Required Field", 400));
   }
   const userExists = await User.findOne({ email: email }).select("+password");
@@ -14,7 +14,7 @@ exports.register = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler("Email is already exist", 400));
   }
 
-  const registration = new User({ name, email, password,phone });
+  const registration = new User({ name, email, password });
   const user = await registration.save();
   sendToken(user, 200, res);
 });
