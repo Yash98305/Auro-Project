@@ -2,7 +2,6 @@ const express = require("express");
 const http = require("http"); // Required for WebSockets
 const { Server } = require("socket.io");
 const dotenv = require('dotenv');
-const errorMiddleware = require("./middlewares/error.js");
 const userRoute = require('./routes/userRoute.js');
 const itemRoute = require('./routes/itemRoute.js');
 const messageRoute = require('./routes/messageRoute.js'); // Add chat route
@@ -74,6 +73,6 @@ io.on('connection',  (socket) => {
         removeUser(socket.id);
         io.emit('getUsers', users);
     })})
-app.use(errorMiddleware);
+app.use(require("./middlewares/error.js"));
 
 module.exports = { app, server };
