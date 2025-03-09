@@ -25,34 +25,16 @@ const VerticalNav = ({handleLogout}) => {
         <span style={{ paddingLeft: "10px" }}>Overview</span>
       </li>
     </NavLink>
-    <NavLink to="/category">
-    <li style={{backgroundColor:`${lpath=="/category" ? '#ccc' : ''}` }}>
-      <InventoryRoundedIcon color="#2E335B" />
-      <span style={{ paddingLeft: "10px"}}>Categories</span>
-      
-    </li>
-      </NavLink>
-      <NavLink to="/expenses">
+    
+      <NavLink to="/create-items">
 
     <li style={{backgroundColor:`${lpath=="/expenses" ? '#ccc' : ''}` }}>
       <ArchiveRoundedIcon color="#2E335B" />
-      <span>Expenses</span>
+      <span>Items</span>
     </li>
     </NavLink>
-    <NavLink to="/income">
-
-    <li style={{backgroundColor:`${lpath=="/income" ? '#ccc' : ''}` }}>
-      <AccountBalanceWalletRoundedIcon color="#2E335B" />
-      <span>Income</span>
-    </li>
-    </NavLink>
-    <NavLink to="/budget">
-
-    <li style={{backgroundColor:`${lpath=="/budget" ? '#ccc' : ''}` }}>
-      <PaidRoundedIcon color="#2E335B" />
-      <span>Budget</span>
-    </li>
-    </NavLink>
+   
+    
     {/* <NavLink to="/statistic">
 
     <li>
@@ -60,13 +42,7 @@ const VerticalNav = ({handleLogout}) => {
       <span>Statistics</span>
     </li>
     </NavLink> */}
-    <NavLink to="/account">
-
-    <li style={{backgroundColor:`${lpath=="/account" ? '#ccc' : ''}` }}>
-      <InsightsRoundedIcon color="#2E335B" />
-      <span>Account</span>
-    </li>
-    </NavLink>
+   
   </ul>
   <ul>
   <NavLink to="/profile">

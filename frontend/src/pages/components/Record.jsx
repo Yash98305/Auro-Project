@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../css/record.css'
+import '../../css/record.css'
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 function Record({icon,name,amount}) {
   return (

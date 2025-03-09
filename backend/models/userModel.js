@@ -31,40 +31,13 @@ const userSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
-status : {
-  type: String,
-  enum: ["active", "inactive"],
-  default: "active"
-},
-monthly_spending :{
-  type: String,
-  default:0
-},
-annual_spending :{
-  type: String,
-  default:0
-},
-monthly_saving :{
-  type: String,
-  default:0
-},
-monthly_earning :{
-  type: String,
-  default:0
-},
-currency:{
-  type: String,
-  enum: ["INR", "USD", "EUR", "GBP"],
-  default: "INR"
-},
-  otp: {
-    type: String,
+  reputation: {
+    ratings: [{ type: Number }], // Array to store ratings
+    badges: [{ type: String }], // e.g., ["Trusted Seller", "Eco Hero"]
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  transactionHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Transaction" }],
+},{ timestamps: true }
+);
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {

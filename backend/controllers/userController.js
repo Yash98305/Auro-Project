@@ -1,11 +1,20 @@
 const ErrorHandler = require("../utils/errorHandler.js");
 const catchAsyncErrors = require("../middlewares/catchAsyncError.js");
-const User = require("../models/uerModel.js");
+const User = require("../models/userModel.js");
 const sendToken = require("../jwtToken/jwtToken.js");
 const fs = require("fs");
-const Account = require("../models/accountsModel.js");
 
 
+exports.getUserReputation =catchAsyncErrors( async (req, res) => {
+    const user = await User.findById(req.params.id).select("reputation");
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const ratings = user.reputation.ratings;
+    const avgRating = ratings.length > 0 ? ratings.reduce((a, b) => a + b, 0) / ratings.length : 0;
+
+    res.status(200).json({ badges: user.reputation.badges, avgRating });
+  
+});
 
 
 exports.userLoginController = catchAsyncErrors(async (req, res, next) => {
@@ -36,45 +45,7 @@ exports.userRegisterController = catchAsyncErrors(async (req, res, next) => {
     const user = new User({
       name,phone, email, password,avatar
     });
-   const t= await user.save();
-   const userId = t._id
-   const e = await Account.findOne({userId});
-   if(e){
-       return next(new ErrorHandler("Account is already associated",200))
-   }
-   const cash= {
-       userId,
-       name: "Cash",
-       balance: 0,
-       type: "My Cash",
-       status: "Active"
-   }
-   const bank ={
-       userId,
-       name: "Bank",
-       balance: 0,
-       type: "My Bank",
-       status: "Active"
-   }
-   const paypal ={
-       userId,
-       name: "Paypal",
-       balance: 0,
-       type: "My E-Wallet",
-       status: "Active"
-   }
-   const other ={
-       userId,
-       name: "Others",
-       balance: 0,
-       type: "Others",
-       status: "Active"
-   }
-   await new Account(cash).save()
-   await new Account(bank).save()
-   await new Account(other).save()
-   await new Account(paypal).save()
-
+   await user.save();
     sendToken(user, 201, res);
 });
 
@@ -218,36 +189,3 @@ exports.getAllUsersPhotoController = catchAsyncErrors(async (req, res,next) => {
 //     helper();
 //   }, 300000);
 // });
-const Income = require("../models/incomeModel.js");
-const Expense = require("../models/expensesModel.js");
-
-exports.currentTransaction = catchAsyncErrors(async (req,res) => {
-  const userId = req.user._id
-  const income = await Income.find({userId}).populate("accountId").populate("categoryId")
-  const expense = await Expense.find({userId}).populate("accountId").populate("categoryId")
-  const data = [
-    ...expense,...income
-  ]
-  data.sort((a, b) => {
-    let dateA = a.createdAt 
-    let dateB = b.createdAt 
-    return new Date(dateB) - new Date(dateA); 
-});
-
-  res.status(200).json({
-    success: true,
-    data
-  });
-})
-
-exports.updateGoles = catchAsyncErrors(async(req,res,next)=>{
-const userId = req.user._id;
-  const {monthly_spending,annual_spending,monthly_saving,monthly_earning} = req.body;
-await User.findByIdAndUpdate(userId,{
-  monthly_spending,annual_spending,monthly_saving,monthly_earning
-})
-res.status(201).json({
-  success: true,
-  message:"Your goles updated successfully"
-})
-});

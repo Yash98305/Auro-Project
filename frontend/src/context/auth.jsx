@@ -2,12 +2,13 @@ import { useState, useEffect, useContext, createContext, useRef } from "react";
 import axios from "axios";
 
 const AuthContext = createContext(null);
-const api = "https://scaler-project.onrender.com/api/v1"
+const api = "http://localhost:8000/api/v1"
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
     token: "",
   });
+    const [searchQuery, setSearchQuery] = useState("");
   const [mot,setmot] = useState(true)
   const [person, setPerson] = useState({});
   const [activeUsers, setActiveUsers] = useState([]);
@@ -43,7 +44,7 @@ const AuthProvider = ({ children }) => {
         setPerson, 
         activeUsers,
         setActiveUsers,
-        newMessageFlag,
+        newMessageFlag,searchQuery, setSearchQuery,
         setNewMessageFlag,showEmojiPicker,setShowEmojiPicker,mot,setmot,o,so,data,setData,filtered, setFiltered
       }}
     >

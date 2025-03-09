@@ -47,15 +47,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Search = () => {
-  const [query, setQuery] = useState('');
-const {data,setFiltered} = useAuth();
-  useEffect(() => {
-    setFiltered(
-      data?.filter(d => 
-        d?.title?(d?.title?.toLowerCase().includes(query.toLowerCase())):(d?.name?.toLowerCase().includes(query.toLowerCase()))
-      )
-    );
-  }, [query, data]);
+  // const [query, setQuery] = useState('');
+const {searchQuery, setSearchQuery} = useAuth();
+  // useEffect(() => {
+  //   setFiltered(
+  //     data?.filter(d => 
+  //       d?.title?(d?.title?.toLowerCase().includes(query.toLowerCase())):(d?.name?.toLowerCase().includes(query.toLowerCase()))
+  //     )
+  //   );
+  // }, [query, data]);
 
   return (
     <>
@@ -66,8 +66,8 @@ const {data,setFiltered} = useAuth();
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </SearchStyle>
     </>

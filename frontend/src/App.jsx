@@ -1,19 +1,16 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.jsx" 
+import Item from "./pages/Item.jsx" 
+import Message from "./pages/Message.jsx" 
 import Login from "./pages/Login.jsx" 
 import Register from "./pages/Register.jsx" 
 // import Header from "./pages/Header";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Forgot from "./pages/Forgot.jsx";
 import Profile from "./pages/Profile.jsx";
-import Category from "./pages/Category.jsx";
-import Expenses from "./pages/Expenses.jsx";
-import Income from "./pages/Income.jsx";
-import Budget from "./pages/Budget.jsx";
-import Statistic from "./pages/Statistic.jsx";
-import Account from "./pages/Account.jsx";
 import { ToastContainer } from "react-toastify";
+import ItemDetail from "./pages/ItemDetail.jsx";
 
 const App = () => {
   return (
@@ -21,16 +18,14 @@ const App = () => {
     <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/home" element={<Home/>}/>
+        <Route path="/create-items" element={<Item/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/item/:id" element={<ItemDetail />} />
         <Route path="/register" element={<Register/>}/>
+        <Route path="/messages" element={<Message/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/forgot" element={<Forgot/>}/>
-        <Route path="/category" element={<Category/>}/>
-        <Route path="/expenses" element={<Expenses/>}/>
-        <Route path="/income" element={<Income/>}/>
-        <Route path="/budget" element={<Budget/>}/>
-        <Route path="/statistic" element={<Statistic/>}/>
-        <Route path="/account" element={<Account/>}/>
+    
         <Route path="*" element={<ErrorPage/>}/>
       </Routes>
 <ToastContainer/>
