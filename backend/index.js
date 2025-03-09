@@ -73,6 +73,6 @@ io.on('connection',  (socket) => {
         removeUser(socket.id);
         io.emit('getUsers', users);
     })})
-app.use(require("./middlewares/error.js"));
+app.use(require("./middlewares/error"));
 
 module.exports = { app, server };
