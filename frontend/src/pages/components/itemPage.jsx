@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
+import {  toast } from "react-toastify";
 
 const ItemPage = () => {
   const { api, auth } = useAuth();
@@ -17,10 +18,10 @@ const ItemPage = () => {
 
   const [imagePreviews, setImagePreviews] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   // ✅ Handles text input fields properly
   const handleChange = (e) => {
+    
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -28,7 +29,7 @@ const ItemPage = () => {
 const handleImageChange = (e) => {
   const files = Array.from(e.target.files);
   if (files.length === 0) {
-    setMessage("Please select at least one image.");
+   toast.error("Please select at least one image.");
     return;
   }
 
@@ -45,7 +46,6 @@ const handleImageChange = (e) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
   
     try {
       const formDataToSend = new FormData();
@@ -72,7 +72,7 @@ const handleImageChange = (e) => {
         headers: { "Content-Type": "multipart/form-data" },
       });
   
-      setMessage("Item listed successfully!");
+      toast.success("Item listed successfully!");
       setFormData({
         title: "",
         description: "",
@@ -86,7 +86,7 @@ const handleImageChange = (e) => {
       setImagePreviews([]);
     } catch (error) {
       console.error("Error:", error);
-      setMessage(error.message || "Error listing item. Please try again.");
+      toast.error(error.message || "Error listing item. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -96,7 +96,6 @@ const handleImageChange = (e) => {
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>Create New Item</h2>
-      {message && <p style={styles.message}>{message}</p>}
 
       <form onSubmit={handleSubmit} style={styles.form}>
         <input type="text" name="title" placeholder="Item Title" value={formData.title} onChange={handleChange} required style={styles.input} />

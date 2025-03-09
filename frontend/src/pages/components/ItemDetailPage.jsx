@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import { Avatar, Button } from "@mui/material";
 
 const ItemDetailPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { api, auth } = useAuth();
   const [item, setItem] = useState(null);
@@ -66,7 +67,9 @@ const ItemDetailPage = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
-
+const handleMessage = ()=>{
+  navigate(`/message?sellerid=${item.seller._id}`)
+}
   return (
     <div
       style={{
@@ -283,7 +286,7 @@ const ItemDetailPage = () => {
           )}
         </div>
         <button
-                type="submit"
+                onClick={handleMessage}
                 style={{
                   marginTop: "10px",
                   padding: "10px",

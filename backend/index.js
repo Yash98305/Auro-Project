@@ -39,25 +39,41 @@ app.get('/', (req, res) => {
 });
 
 // WebSocket Connection
-io.on("connection", (socket) => {
-    console.log(`User connected: ${socket.id}`);
+let users = [];
 
-    socket.on("joinRoom", ({ itemId, userId, sellerId }) => {
-        const roomId = `chat_${itemId}_${userId}_${sellerId}`;
-        socket.join(roomId);
-    });
+const addUser = (userData, socketId) => {
+    !users.some(user => user.id === userData.id) && users.push({ ...userData, socketId });
+}
 
-     socket.on("sendMessage", (message) => {
-        const roomId = `chat_${message.itemId}_${message.senderId}_${message.receiverId}`;
-        io.to(roomId).emit("receiveMessage", message);
-    });
+const removeUser = (socketId) => {
+    users = users.filter(user => user.socketId !== socketId);
+}
 
-    // Handle disconnection
-    socket.on("disconnect", () => {
-        console.log(`User disconnected: ${socket.id}`);
-    });
-});
+const getUser = (userId) => {
+    return users.find(user => user.id === userId);
+}
 
+io.on('connection',  (socket) => {
+    console.log('user connected')
+
+    //connect
+    socket.on("addUser", userData => {
+        addUser(userData, socket.id);
+        io.emit("getUsers", users);
+    })
+
+    //send message
+    socket.on('sendMessage', (data) => {
+        const user = getUser(data.receiverId);
+        user && io.to(user.socketId).emit('getMessage', data)
+    })
+
+    //disconnect
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+        removeUser(socket.id);
+        io.emit('getUsers', users);
+    })})
 app.use(errorMiddleware);
 
-module.exports = { app, server }; 
+module.exports = { app, server };

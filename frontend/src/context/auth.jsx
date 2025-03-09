@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext, createContext, useRef } from "react";
 import axios from "axios";
-
+import { io } from 'socket.io-client';
 const AuthContext = createContext(null);
-const api = "http://localhost:8000/api/v1"
+const api = "https://auro-project.onrender.com/api/v1"
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     user: null,
@@ -15,8 +15,11 @@ const AuthProvider = ({ children }) => {
   const [newMessageFlag, setNewMessageFlag] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const[o,so]=useState(true)
-  const [data,setData] = useState([])
-  const [filtered, setFiltered] = useState([]);
+
+  const socket = useRef();
+
+
+  //default axios
   axios.defaults.headers.common["Authorization"] = auth?.token;
 
   useEffect(() => {
@@ -32,20 +35,22 @@ const AuthProvider = ({ children }) => {
 
     //eslint-disable-next-line
   }, []);
-
+  useEffect(() => {
+    socket.current = io("ws://localhost:8000");
+  }, []);
 
   return (
     <AuthContext.Provider
       value={{
         api,
-        auth,
+        auth,socket,
         setAuth,
         person,
         setPerson, 
         activeUsers,
         setActiveUsers,
         newMessageFlag,searchQuery, setSearchQuery,
-        setNewMessageFlag,showEmojiPicker,setShowEmojiPicker,mot,setmot,o,so,data,setData,filtered, setFiltered
+        setNewMessageFlag,showEmojiPicker,setShowEmojiPicker,mot,setmot,o,so
       }}
     >
       {children}

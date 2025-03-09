@@ -33,15 +33,16 @@ const VerticalNav = ({handleLogout}) => {
       <span>Items</span>
     </li>
     </NavLink>
+      <NavLink to="/message">
+
+    <li style={{backgroundColor:`${lpath=="/expenses" ? '#ccc' : ''}` }}>
+      <InventoryRoundedIcon color="#2E335B" />
+      <span>Messages</span>
+    </li>
+    </NavLink>
    
     
-    {/* <NavLink to="/statistic">
-
-    <li>
-      <InsightsRoundedIcon color="secondary" />
-      <span>Statistics</span>
-    </li>
-    </NavLink> */}
+   
    
   </ul>
   <ul>

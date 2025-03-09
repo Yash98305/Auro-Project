@@ -4,6 +4,8 @@ const formidable = require("express-formidable");
 const pages = require('../controllers/messageController.js')
 const {isAuthenticatedUser} = require("../middlewares/authMiddlewaresUser.js")
 
-router.route('/:itemId/message').post(isAuthenticatedUser, pages.sendMessage)
-router.route('/:itemId/messages').get(isAuthenticatedUser, pages.getChatHistory)
+router.route('/conversation/add').post(pages.newConvertionController)
+router.route('/conversation/get').post(pages.getConversationController)
+router.route('/add').post(pages.newMessageController)
+router.route('/get/:id').get(pages.getMessagesController)
 module.exports = router

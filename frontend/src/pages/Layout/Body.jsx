@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import "../../css/home.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useAuth } from "../../context/auth";
 import Avatar from "@mui/material/Avatar";
+import avatar from "../../assets/User-avatar-profile-icon-Graphics-17068385-1-1-580x386.jpg";
 import NotificationsActiveRoundedIcon from "@mui/icons-material/NotificationsActiveRounded";
 import Search from "./Search";
 import { motion } from "framer-motion";
@@ -47,7 +48,10 @@ useEffect(()=>{
               <Avatar
                 style={{ border: "2px solid black", zIndex: "11 !important" }}
                 sx={{ width: 50, height: 50 }}
-                src={`${api}/user/photo/${auth?.user?._id}`}
+                src={!auth?.user?.photo
+              ? avatar
+              : `${api}/user/photo/${auth?.user?._id}`
+          }
                 alt="error"
               />
             </div>
@@ -78,7 +82,6 @@ useEffect(()=>{
               </div>
             </div>
           </div>
-          <ToastContainer />
         </div>
       </div>
     </>

@@ -11,6 +11,7 @@ import Forgot from "./pages/Forgot.jsx";
 import Profile from "./pages/Profile.jsx";
 import { ToastContainer } from "react-toastify";
 import ItemDetail from "./pages/ItemDetail.jsx";
+import Chat from "./pages/Chat.jsx";
 
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/item/:id" element={<ItemDetail />} />
         <Route path="/register" element={<Register/>}/>
-        <Route path="/messages" element={<Message/>}/>
+        <Route path="/message" element={<Chat/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/forgot" element={<Forgot/>}/>
     

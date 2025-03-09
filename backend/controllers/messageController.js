@@ -1,53 +1,50 @@
 const Message = require("../models/messageModel.js");
 const User = require("../models/userModel.js");
+const Conversation = require("../models/conversationModel.js");
 const catchAsyncErrors = require("../middlewares/catchAsyncError.js");
 
-exports.sendMessage = catchAsyncErrors(async (req, res) => {
-    const { message } = req.body;
-    const { itemId } = req.params;
-    const senderId = req.user._id; // Assume user is authenticated
-
-    const item = await Item.findById(itemId);
-    if (!item) {
-        return res.status(404).json({ error: "Item not found" });
+exports.newConvertionController = catchAsyncErrors(async(req,res,next)=>{
+    const {senderId , receiverId} = req.body;
+  const exist = await Conversation.findOne({
+    members:{
+      $all : [receiverId,senderId]
     }
-
-    const newMessage = new Message({
-        sender: senderId,
-        receiver: item.seller,
-        item: itemId,
-        message,
-    });
-
-    await newMessage.save();
-    res.status(201).json({ message: "Message sent successfully!" });
-});
-
-// Get chat history with the seller
-exports.getChatHistory = catchAsyncErrors(async (req, res) => {
-    const { itemId } = req.params;
-    const userId = req.user._id;
-
-    const messages = await Message.find({ 
-        item: itemId, 
-        $or: [{ sender: userId }, { receiver: userId }] 
+  })
+  if(exist){
+    return res.status(200).json({
+      message : "conversation already exists"
     })
-    .populate("sender", "name email")
-    .populate("receiver", "name email");
-
-    res.status(200).json({ success: true, messages });
-});
-
-
-exports.markMessagesAsRead =catchAsyncErrors( async (req, res) => {
-    const { senderId } = req.body;
-    const receiverId = req.user.id;
-
-    await Message.updateMany(
-      { sender: senderId, receiver: receiverId, isRead: false },
-      { $set: { isRead: true } }
-    );
-
-    res.status(200).json({ message: "Messages marked as read" });
+  }
   
-});
+  const newConvertion = new Conversation({
+    members : [senderId , receiverId]
+  })
+  await newConvertion.save();
+  return res.status(200).json({
+    message : "conversation saved successfully"
+  })
+  })
+  
+  exports.getConversationController = catchAsyncErrors(async(req,res,next)=>{
+    const {senderId , receiverId} = req.body;
+    let conversation = await Conversation.findOne({
+      members : {
+        $all : [receiverId,senderId]    }
+      })
+    return res.status(200).json(conversation)
+  })
+  
+  exports.newMessageController = catchAsyncErrors(async(req,res,next)=>{
+  const newMessage = new Message(req.body)
+  await newMessage.save()
+  await Conversation.findByIdAndUpdate(req.body.conversationId, {message:req.body.text})
+  return res.status(200).json({
+    message : "message has sent"
+  })
+  })
+  
+  exports.getMessagesController = catchAsyncErrors(async(req,res,next)=>{
+    const message = await Message.find({conversationId : req.params.id})
+    return res.status(200).json(message)
+  })
+ 
