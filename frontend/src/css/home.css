@@ -1,0 +1,261 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Questrial", sans-serif !important;
+}
+
+a{
+  color: #2E335B !important ;
+
+}
+.canvasjs-chart-credit{
+  color: transparent !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #000;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #e5e5e5;
+}
+
+body{
+  overflow: hidden;
+}
+.Card-container {
+  height: 190px !important;
+}
+a {
+  font-weight: 600;
+  text-decoration: none;
+}
+a span{
+  font-weight: 900;
+  padding-left: 10px;
+}
+
+.home_con {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  background-color: #EEEDEB;
+}
+.home_con > div {
+  height: 100vh;
+
+  width: 100vw;
+}
+.horizontal_nav {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 0px 20px;
+  z-index: 999;
+}
+.horizontal_nav_1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.home_content {
+  display: flex;
+  justify-content: space-between;
+}
+.vertical_nav {
+  width: 200px;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.vertical_nav ul:nth-child(1) {
+  height: 430px;
+}
+.vertical_nav ul li {
+  margin-bottom: 20px;
+}
+.page {
+  background-color: #fff;
+  width: 90%;
+  margin-right: 20px;
+  margin-top: -5px;
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  z-index: 0;
+  justify-content: center;
+  background-color: #EEEDEB;
+}
+.page > div {
+  width: 97%;
+  height: 87vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  background-color: #fff;
+}
+.page > div>div{
+  width: 80vw;
+}
+li {
+  height: 40px;
+ padding: 0px 10px;
+ border-radius: 20px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+}
+
+ul li:hover{
+  background-color: #DBDDDC;
+  cursor: pointer;
+}
+/* category_page */
+
+.category_page {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.category_page_left {
+  width: 60%;
+}
+.category_page_right {
+  width: 40%;
+}
+.category_form {
+  display: flex;
+  margin-top: 10px;
+  align-content: center;
+  justify-content: center;
+}
+MuiStack-root > .MuiPickersTextField-root {
+  min-width: 100%;
+}
+.css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root {
+  height: 30px;
+  width: 30px;
+}
+
+
+table {
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+td,th {
+	padding: 15px 0px;
+	border-right: 1px solid #ccc;
+  width: 565px;
+}
+
+thead tr {
+	background: #888;
+	color: #eee;
+	display: block;
+	position: relative;
+}
+tbody {
+	display: block;
+	height: 417px;
+  width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+  scrollbar-width: none;
+}
+tbody tr:nth-child(even) {
+	background: #ddd;
+}
+.Card-container {
+  width: 280px;
+  height: 170px;
+  border-radius: 12px;
+  background-size: 100% 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.Card-visa-logo {
+  width: 60px;
+  height: 20px;
+  margin-bottom: 5px;
+}
+
+.Card-mastercard-logo {
+  width: 70px;
+  height: 50px;
+}
+
+.Card-chip {
+  width: 37px;
+  height: 35px;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.Card-bank-name {
+  font-size: 26px;
+  text-align: right;
+  margin-right: 8px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.Card-bank-number {
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  margin-left: 10px;
+  margin-top: 1px;
+}
+
+.Card-name-holder {
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  margin-left: 10px;
+  display: flex;
+  flex: 1;
+}
+
+.Card-bottom-row {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 3px;
+}
+
+.incomename{
+  display: flex;
+  flex-direction: column;
+
+}
+.incomename>div:nth-child(1){
+  color: Green;
+  font-size: 20px;
+  text-transform:capitalize ;
+}
+.incomename>div:nth-child(2){
+  color: #888;
+  font-size: 15px;
+}
+.incomename>div:nth-child(3){
+  color: #888;
+
+  font-size: 15px;
+  text-transform:capitalize ;
+
+}
