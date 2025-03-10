@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const formidable = require("express-formidable");
-const pages = require('../controllers/messageController.js')
-const {isAuthenticatedUser} = require("../middlewares/authMiddlewaresUser.js")
+const pages = require('./../controllers/messageController.js')
+const {isAuthenticatedUser} = require("./../middlewares/authMiddlewaresUser.js")
 
 router.route('/conversation/add').post(pages.newConvertionController)
 router.route('/conversation/get').post(pages.getConversationController)

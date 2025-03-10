@@ -1,7 +1,7 @@
 const fs = require("fs");
-const Item = require("../models/itemModel.js");
-const User = require("../models/userModel.js");
-const catchAsyncErrors = require("../middlewares/catchAsyncError.js");
+const Item = require("./../models/itemModel.js");
+const User = require("./../models/userModel.js");
+const catchAsyncErrors = require("./../middlewares/catchAsyncError.js");
 
 exports.createItem = catchAsyncErrors(async (req, res) => {
     const { title, description, category, price, condition, location, seller } = req.fields;

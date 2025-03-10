@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const catchAsyncError = require('../middlewares/catchAsyncError');
+const catchAsyncError = require('./../middlewares/catchAsyncError');
 
 const transport = nodemailer.createTransport({
     host: process.env.SMPT_HOST,
