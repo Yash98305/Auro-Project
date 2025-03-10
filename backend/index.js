@@ -16,8 +16,8 @@ const app = express();
 const server = http.createServer(app); // Create HTTP Server
 const io = new Server(server, {
     cors: {
-        origin: "*", // Allow all origins (update this for production)
-        methods: ["GET", "POST"]
+        origin: "https://auro-yashpatel.netlify.app", // Allow all origins (update this for production)
+        methods: ["GET", "POST","PATCH","PUT","DELETE"]
     }
 });
 
