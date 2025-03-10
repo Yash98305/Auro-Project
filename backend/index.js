@@ -25,7 +25,7 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 app.use(cors({
-  origin: 'https://auro-yashpatel.netlify.app/',  
+  origin: 'https://auro-yashpatel.netlify.app',  
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
