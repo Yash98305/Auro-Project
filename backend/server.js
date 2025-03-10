@@ -1,5 +1,5 @@
 const { app, server } = require("./index.js"); // Import both app & server
-const connectDatabase = require("./database/db.js");
+const connectDatabase = require("./db.js");
 
 // Handle Uncaught Exceptions (e.g., undefined variables)
 process.on("uncaughtException", (err) => {
