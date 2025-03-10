@@ -16,14 +16,19 @@ const app = express();
 const server = http.createServer(app); // Create HTTP Server
 const io = new Server(server, {
     cors: {
-        origin: "https://auro-yashpatel.netlify.app", // Allow all origins (update this for production)
-        methods: ["GET", "POST","PATCH","PUT","DELETE"]
+        origin: "*", // Allow all origins (update this for production)
+        methods: ["GET", "POST"]
     }
 });
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(cors({
+  origin: 'https://auro-yashpatel.netlify.app/',  
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
