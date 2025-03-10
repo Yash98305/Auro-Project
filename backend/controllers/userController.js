@@ -1,7 +1,7 @@
 
 
-const catchAsyncErrors = require("./../middlewares/catchAsyncError.js");
 const User = require("./../models/userModel.js");
+const catchAsyncErrors = require("./catchAsyncError.js");
 const sendToken = require("./../jwtToken/jwtToken.js");
 const ErrorHandler = require("./../middlewares/errorHandler");
 const fs = require("fs");

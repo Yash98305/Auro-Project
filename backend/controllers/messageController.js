@@ -1,7 +1,7 @@
 const Message = require("./../models/messageModel.js");
 const User = require("./../models/userModel.js");
 const Conversation = require("./../models/conversationModel.js");
-const catchAsyncErrors = require("./../middlewares/catchAsyncError.js");
+const catchAsyncErrors = require("./catchAsyncError.js");
 
 exports.newConvertionController = catchAsyncErrors(async(req,res,next)=>{
     const {senderId , receiverId} = req.body;
