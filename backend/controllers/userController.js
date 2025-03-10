@@ -3,7 +3,7 @@
 const User = require("./../models/userModel.js");
 const catchAsyncErrors = require("./catchAsyncError.js");
 const sendToken = require("./jwtToken.js");
-const ErrorHandler = require("./../middlewares/errorHandler");
+const ErrorHandler = require("./errorHandler.js");
 const fs = require("fs");
 
 exports.getUserReputation =catchAsyncErrors( async (req, res) => {
