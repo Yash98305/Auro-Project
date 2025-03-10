@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const formidable = require("express-formidable");
 const pages = require('./../controllers/userController.js')
-const {isAuthenticatedUser} = require("./../middlewares/authMiddlewaresUser.js")
+const {isAuthenticatedUser} = require("../controllers/authMiddlewaresUser.js")
 
 router.route('/login').post(pages.userLoginController)
 router.route('/register').post(pages.userRegisterController)

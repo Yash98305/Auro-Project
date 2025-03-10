@@ -1,7 +1,7 @@
 const express = require("express");
 const pages = require("./../controllers/itemController.js");
 const formidable = require("express-formidable");
-const { isAuthenticatedUser } = require("./../middlewares/authMiddlewaresUser.js");
+const { isAuthenticatedUser } = require("../controllers/authMiddlewaresUser.js");
 const router = express.Router();
 
 router.route("/create").post(formidable(), pages.createItem); 
