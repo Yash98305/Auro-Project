@@ -2,7 +2,7 @@
 
 const User = require("./../models/userModel.js");
 const catchAsyncErrors = require("./catchAsyncError.js");
-const sendToken = require("./../../backend/jwtToken/jwtToken.js");
+const sendToken = require("./jwtToken.js");
 const ErrorHandler = require("./../middlewares/errorHandler");
 const fs = require("fs");
 
